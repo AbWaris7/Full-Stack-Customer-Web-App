@@ -8,9 +8,11 @@ import java.util.List;
 public class CustomerService {
 
     private CustomerDao customerDao;
+
     public CustomerService(CustomerDao customerDao) {
         this.customerDao = customerDao;
     }
+
     public List<Customer> getAllCustomers() {
         return customerDao.selectAllCustomer();
     }
