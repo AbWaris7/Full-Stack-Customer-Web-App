@@ -1,7 +1,6 @@
 package com.customer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 public class Main {
-    private static ArrayList<Customer> customers;
+    private static final ArrayList<Customer> customers;
      static {
 
         customers = new ArrayList<>();
