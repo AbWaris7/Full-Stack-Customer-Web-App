@@ -3,6 +3,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -88,8 +89,13 @@ public class Main {
    }
 
    @GetMapping("/customers")
-    public List<Customer> getCustomers() {
+    private List<Customer> getCustomers() {
 
          return customers;
+   }
+
+   @GetMapping("/customers/{id}")
+    private Customer getCustomer(@PathVariable Integer id) {
+         return customers.stream().filter(c -> c.getId().equals(id)).findFirst().orElseThrow(()->new IllegalArgumentException("Customer not found "+id));
    }
 }
