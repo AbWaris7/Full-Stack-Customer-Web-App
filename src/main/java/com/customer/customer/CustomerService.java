@@ -1,7 +1,5 @@
 package com.customer.customer;
-
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -17,7 +15,7 @@ public class CustomerService {
         return customerDao.selectAllCustomer();
     }
 
-    public Customer getCustomerById(int id) {
+    public Customer getCustomerById(Integer id) {
         return customerDao.selectCustomerById(id);
     }
 }
