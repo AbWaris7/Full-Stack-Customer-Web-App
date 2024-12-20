@@ -1,9 +1,19 @@
 package com.customer.customer;
 
+import jakarta.persistence.*;
+
 class Customer {
+    @Id
+    @SequenceGenerator(name = "customer_id_sequence",
+    sequenceName = "customer_id_sequence")
+
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "customer_id_sequence")
     private Integer id;
+    @Column(name ="name")
     private String name;
+    @Column(name = "email")
     private String email;
+    @Column(name = "age")
     private Integer age;
 
     public Customer(Integer id, String name, String email, Integer age) {
