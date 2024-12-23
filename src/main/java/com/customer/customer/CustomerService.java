@@ -1,4 +1,5 @@
 package com.customer.customer;
+import com.customer.execption.DuplicateResourceException;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -18,5 +19,15 @@ public class CustomerService {
 
     public Customer getCustomerById(Integer id) {
         return customerDao.selectCustomerById(id);
+    }
+
+    public void addCustomer(CustomerRegistrationRequest customerRegistrationRequest) {
+
+        String email = customerRegistrationRequest.email();
+        if(customerDao.existsPersonWithEmail(email)) {
+            throw  new DuplicateResourceException("customer with email [%s] already exist".formatted(email));
+        }
+
+        customerDao.insertCustomer(new Customer(customerRegistrationRequest.name(), customerRegistrationRequest.email(), customerRegistrationRequest.age()));
     }
 }
