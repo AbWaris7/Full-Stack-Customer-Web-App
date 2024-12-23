@@ -1,13 +1,12 @@
 package com.customer.customer;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("/api/vi/customers")
 public class CustomerController {
 
 
@@ -18,14 +17,19 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
-    @GetMapping("/customers")
+    @GetMapping
     private List<Customer> getCustomers() {
 
         return customerService.getAllCustomers();
     }
 
-    @GetMapping("/customers/{id}")
+    @GetMapping("{id}")
     private Customer getCustomer(@PathVariable Integer id) {
         return customerService.getCustomerById(id);
+    }
+
+    @PostMapping
+    public void registerCustomer(@RequestBody CustomerRegistrationRequest request) {
+        customerService.addCustomer(request);
     }
 }
