@@ -28,4 +28,9 @@ public class CustomerJPADataAccessService implements CustomerDao{
         customerRepository.save(customer);
 
     }
+
+    @Override
+    public boolean existsPersonWithEmail(String email) {
+        return customerRepository.existsCustomerByEmail(email);
+    }
 }
