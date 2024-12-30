@@ -1,5 +1,6 @@
 package com.customer.customer;
 
+import jakarta.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,5 +32,10 @@ public class CustomerController {
     @PostMapping
     public void registerCustomer(@RequestBody CustomerRegistrationRequest request) {
         customerService.addCustomer(request);
+    }
+
+    @DeleteMapping("{id}")
+    public void deleteCustomer(@PathVariable("id") Integer id) {
+        customerService.deleteCustomer(id);
     }
 }
